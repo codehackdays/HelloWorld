@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var redis = require('redis').createClient(process.env.REDIS_URL);
 
+console.log(process.env.REDIS_URL);
+
 app.get('/', function(req, res){
   res.send('hello world');
 });
