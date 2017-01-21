@@ -25,7 +25,7 @@ app.get('/keys', function (req, res){
   redis_client.get(req.query.key, function (err, reply){
     if (err) { throw err; }
     var value = (reply === null ? null : reply.toString());
-    res.send(JSON.stringify({value: value}));
+    res.send(JSON.stringify(value));
   });
 });
 
@@ -33,7 +33,7 @@ app.get('/list', function (req, res) {
   redis_client.keys('*', function (err, reply) {
     if (err) { throw err; }
     var value = (reply === null ? null : reply.toString());
-    res.send(JSON.stringify({value: value}));
+    res.send(JSON.stringify(value));
   });
 });
 
