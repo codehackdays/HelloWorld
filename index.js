@@ -29,4 +29,12 @@ app.get('/keys', function (req, res){
   });
 });
 
+app.get('/list', function (req, res) {
+  redis_client.keys('*', function (err, reply) {
+    if (err) { throw err; }
+    var value = (reply === null ? null : reply.toString());
+    res.send(JSON.stringify({value: value}));
+  });
+});
+
 app.listen(process.env.PORT || 3000);
