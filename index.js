@@ -6,6 +6,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/sayhello', function (req, res){
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({message: "Hello " + req.query.name}));
 });
