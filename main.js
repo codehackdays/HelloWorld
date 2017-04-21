@@ -1,6 +1,6 @@
 var pm2 = require('pm2');
 
-var MACHINE_NAME = 'hk1';
+var MACHINE_NAME = 'helloworld';
 var PRIVATE_KEY  = process.env.KEYMETRICS_PRIVATE_KEY;   // Keymetrics Private key
 var PUBLIC_KEY   = process.env.KEYMETRICS_PUBLIC_KEY;   // Keymetrics Public  key
 
