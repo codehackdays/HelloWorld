@@ -1,8 +1,9 @@
 var express = require('express');
-var app = express();
-
 var jwt = require('express-jwt');
 var jwks = require('jwks-rsa');
+var redis = require('redis');
+
+var app = express();
 
 if (process.env.AUTH_ENABLED == 'true' ||
     process.env.AUTH_ENABLED == '1') {
@@ -27,7 +28,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-var redis = require('redis');
 var redis_client = redis.createClient(process.env.REDIS_URL);
 
 app.get('/', function (req, res){
