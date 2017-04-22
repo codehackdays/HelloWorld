@@ -98,5 +98,23 @@ app.get('/rotas/events', function(req, res){
   res.send(JSON.stringify(events));
 });
 
+var people = [
+  {
+    "name" : "Derek"
+  },
+  {
+    "name" : "Eileen"
+  }
+];
+
+app.get('/rotas/people', function(req, res){
+  res.setHeader('Content-Type','application/json');
+  res.send(JSON.stringify(people));
+});
+
+app.post('/rotas/people', function(req,res){
+  people.push(req.body);
+  res.send("Done");
+});
 
 app.listen(process.env.PORT || 3000);

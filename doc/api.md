@@ -32,3 +32,28 @@ returns a list of upcoming events
        ...
     ]
 
+
+## View People
+
+`GET`
+`/rotas/people`
+
+returns a list of People
+
+   [
+      {
+        name: STRING
+      }
+   ]
+
+
+## Add People
+
+`POST`
+`/rotas/people`
+
+adds a person to our collection of people
+
+   {
+     name: STRING
+   }
