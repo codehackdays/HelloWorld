@@ -55,6 +55,7 @@ app.get('/sayhello', function (req, res){
 
 app.post('/keys', function (req, res){
   res.setHeader('Access-Control-Allow-Origin', '*');
+  console.log("Query", req.query)
   redis_client().set(req.query.key, req.query.value, redis.print);
   res.send("");
 });
@@ -80,8 +81,8 @@ app.get('/list', function (req, res) {
 // API /rotas/events
 
 /* remove afterwards */
-var events = [
-  {
+var events = {
+  1: {
     "name": "Foo",
     "description": "This is a default event",
     "start": "2010-04-05T14:30Z",
@@ -90,17 +91,29 @@ var events = [
       "preaching": 1,
       "flowers": 2
     }
+  },
+  2: {
+    "name": "Bar",
+    "description": "This is a default event",
+    "start": "2010-04-05T14:30Z",
+    "end": "2010-04-05T15:30Z",
+    "required_skills": {
+      "preaching": 5,
+      "flowers": 1
+    }
   }
-];
+};
 
 app.post('/rotas/events', function(req,res) {
-  events.push(req.body);
+  redis_client().hmset('events',events);
   res.send("Done");
 });
 
 app.get('/rotas/events', function(req, res){
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(events));
+  redis_client().hgetall('events',function(err,events){
+    res.send(JSON.stringify(events));
+  });
 });
 
 // API /rotas/people
