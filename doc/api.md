@@ -46,12 +46,12 @@ returns a list of upcoming events
 
 returns a list of People
 
-   [
-      {
-        name: STRING
-        skills: [ STRING ]
-      }
-   ]
+    [
+       {
+          name: STRING
+          skills: [ STRING ]
+       }
+    ]
 
 
 ## Add People
@@ -61,7 +61,7 @@ returns a list of People
 
 adds a person to our collection of people
 
-   {
-     name: STRING
-     skills: [ STRING ]
-   }
+    {
+       name: STRING
+       skills: [ STRING ]
+    }
