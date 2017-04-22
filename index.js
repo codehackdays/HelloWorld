@@ -2,6 +2,7 @@ var express = require('express');
 var jwt = require('express-jwt');
 var jwks = require('jwks-rsa');
 var redis = require('redis');
+var bodyParser = require('body-parser');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
 });
+app.use(bodyParser.json());
 
 var _redis_client;
 function redis_client() {
@@ -74,5 +76,27 @@ app.get('/list', function (req, res) {
     res.send(JSON.stringify(value));
   });
 });
+
+/* Events: Get event*/
+
+/* remove afterwards */
+var events = [
+  {
+    "name": "Foo",
+    "description": "This is a default event",
+    "start": "2010-04-05T14:30Z",
+    "end": "2010-04-05T15:30Z"
+  }
+];
+app.post('/rotas/events', function(req,res) {
+  console.log("Request ", req.body);
+  events.push(req.body);
+  res.send("Done");
+});
+app.get('/rotas/events', function(req, res){
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify(events));
+});
+
 
 app.listen(process.env.PORT || 3000);
