@@ -7,12 +7,12 @@
 
 adds an event to the rota
 
-   {
-      name: STRING
-      description: STRING
-      start: DATETIME
-      end: DATETIME
-   }
+    {
+        name: STRING
+        description: STRING
+        start: DATETIME
+        end: DATETIME
+    }
 
 
 ## View Events
@@ -22,13 +22,13 @@ adds an event to the rota
 
 returns a list of upcoming events
 
-   [
-      {
-         name: STRING
-         description: STRING
-         start: DATETIME
-         end: DATETIME
-      }
-      ...
-   ]
+    [
+       {
+          name: STRING
+          description: STRING
+          start: DATETIME
+          end: DATETIME
+       }
+       ...
+    ]
 
