@@ -4,19 +4,22 @@ var app = express();
 var jwt = require('express-jwt');
 var jwks = require('jwks-rsa');
 
-var jwtCheck = jwt({
-    secret: jwks.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: "https://codehackdays.eu.auth0.com/.well-known/jwks.json"
-    }),
-    audience: 'https://codehackdays-helloworld.herokuapp.com/',
-    issuer: "https://codehackdays.eu.auth0.com/",
-    algorithms: ['RS256']
-});
+if (process.env.AUTH_ENABLED == 'true' ||
+    process.env.AUTH_ENABLED == '1') {
+    var jwtCheck = jwt({
+        secret: jwks.expressJwtSecret({
+            cache: true,
+            rateLimit: true,
+            jwksRequestsPerMinute: 5,
+            jwksUri: "https://codehackdays.eu.auth0.com/.well-known/jwks.json"
+        }),
+        audience: 'https://codehackdays-helloworld.herokuapp.com/',
+        issuer: "https://codehackdays.eu.auth0.com/",
+        algorithms: ['RS256']
+    });
 
-app.use(jwtCheck);
+    app.use(jwtCheck);
+}
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
