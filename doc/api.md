@@ -12,6 +12,9 @@ adds an event to the rota
         description: STRING
         start: DATETIME
         end: DATETIME
+        required_skills: {
+          STRING: INT
+        }
     }
 
 
@@ -28,6 +31,9 @@ returns a list of upcoming events
           description: STRING
           start: DATETIME
           end: DATETIME
+          required_skills: {
+            STRING: INT
+          }
        }
        ...
     ]
@@ -43,6 +49,7 @@ returns a list of People
    [
       {
         name: STRING
+        skills: [ STRING ]
       }
    ]
 
@@ -56,4 +63,5 @@ adds a person to our collection of people
 
    {
      name: STRING
+     skills: [ STRING ]
    }

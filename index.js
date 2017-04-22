@@ -77,7 +77,7 @@ app.get('/list', function (req, res) {
   });
 });
 
-/* Events: Get event*/
+// API /rotas/events
 
 /* remove afterwards */
 var events = [
@@ -85,25 +85,34 @@ var events = [
     "name": "Foo",
     "description": "This is a default event",
     "start": "2010-04-05T14:30Z",
-    "end": "2010-04-05T15:30Z"
+    "end": "2010-04-05T15:30Z",
+    "required_skills": {
+      "preaching": 1,
+      "flowers": 2
+    }
   }
 ];
+
 app.post('/rotas/events', function(req,res) {
-  console.log("Request ", req.body);
   events.push(req.body);
   res.send("Done");
 });
+
 app.get('/rotas/events', function(req, res){
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(events));
 });
 
+// API /rotas/people
+
 var people = [
   {
-    "name" : "Derek"
+    "name": "Derek",
+    "skills": [ "preaching" ]
   },
   {
-    "name" : "Eileen"
+    "name" : "Eileen",
+    "skills": [ "flowers" ]
   }
 ];
 
