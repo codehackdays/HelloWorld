@@ -35,6 +35,9 @@ var _redis_client;
 function redis_client() {
     if (_redis_client === undefined) {
         _redis_client = redis.createClient(process.env.REDIS_URL);
+        _redis_client.on('connect', function() {
+          console.log('connected to redis!');
+        });
     }
     return _redis_client;
 }

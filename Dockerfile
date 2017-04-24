@@ -4,16 +4,11 @@ RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/do
 		  | tar -xzC /bin
 RUN herokuish buildpack install https://github.com/heroku/heroku-buildpack-nodejs
 
-# Create app directory
-RUN mkdir -p /app/user
-WORKDIR /app/user
+COPY . /
 
-# Install app dependencies
-COPY package.json /app/user
-#RUN npm install
+RUN /tmp/buildpacks/heroku-buildpack-nodejs/bin/compile / /cache /env
 
-# Bundle app source
-COPY . /app/user
+ENV PATH="/.heroku/node/bin:${PATH}"
 
 EXPOSE 8080
 CMD [ "npm", "start" ]
